@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension id="keepalive" version="1.0.0" esdk-version="2.0" rsbundle-class="keepalive.Res"
+           xmlns="http://jcp.org/jsr/198/extension-manifest">
+    <name>keepalive</name>
+    <owner>Stefano Cristalli</owner>
+    <feature-member id="esdk-samples" xmlns="http://xmlns.oracle.com/ide/extension"/>
+    <trigger-hooks xmlns="http://xmlns.oracle.com/ide/extension">
+        <triggers>
+            <actions xmlns="http://xmlns.oracle.com/jdeveloper/1013/extension">
+                <action id="keepalive.KeepaliveAction">
+                    <properties>
+                        <property name="Name">&amp;keepalive</property>
+                        <property name="SmallIcon">${OracleIcons.LABEL}</property>
+                    </properties>
+                </action>
+            </actions>
+            <controllers xmlns="http://xmlns.oracle.com/ide/extension">
+                <controller class="keepalive.KeepaliveController">
+                    <update-rules>
+                        <update-rule rule="always-enabled">
+                            <action id="keepalive.KeepaliveAction">
+                                <label>keepalive</label>
+                            </action>
+                        </update-rule>
+                    </update-rules>
+                </controller>
+            </controllers>
+            <menu-hook xmlns="http://jcp.org/jsr/198/extension-manifest">
+                <toolbars>
+                    <toolbar id="javax.ide.view.MAIN_WINDOW_TOOLBAR_ID">
+                        <section id="javax.ide.tck.toolbar.testsection" after="javax.ide.NEW_SECTION_ID">
+                            <item action-ref="keepalive.KeepaliveAction"></item>
+                        </section>
+                    </toolbar>
+                </toolbars>
+            </menu-hook>
+        </triggers>
+    </trigger-hooks>
+    <hooks>
+        <feature-hook>
+            <description>keepalive extension for Oracle SQL Developer 4+.</description>
+            <optional>true</optional>
+        </feature-hook>
+    </hooks>
+</extension>   
