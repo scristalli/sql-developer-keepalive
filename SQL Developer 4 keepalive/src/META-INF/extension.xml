@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension id="keepalive" version="1.0.0" esdk-version="2.0" rsbundle-class="keepalive.Res"
            xmlns="http://jcp.org/jsr/198/extension-manifest">
-    <name>keepalive</name>
+    <name>SQL Developer 4 keepalive</name>
     <owner>Stefano Cristalli</owner>
     <feature-member id="esdk-samples" xmlns="http://xmlns.oracle.com/ide/extension"/>
     <trigger-hooks xmlns="http://xmlns.oracle.com/ide/extension">
@@ -42,4 +42,4 @@
             <optional>true</optional>
         </feature-hook>
     </hooks>
-</extension>   
+</extension> 
