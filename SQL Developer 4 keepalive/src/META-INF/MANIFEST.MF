@@ -3,6 +3,7 @@ Bundle-Version: 1.0.0
 Bundle-SymbolicName: keepalive
 Bundle-ClassPath: .
 Require-Bundle: oracle.ide,
- oracle.javatools,
  oracle.icons,
- oracle.sqldeveloper
+ oracle.sqldeveloper,
+ oracle.javatools,
+ oracle.db-api

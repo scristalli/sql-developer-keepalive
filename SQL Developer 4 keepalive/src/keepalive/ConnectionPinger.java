@@ -1,5 +1,6 @@
 package keepalive;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import java.text.DateFormat;
@@ -7,20 +8,19 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
-import java.sql.ResultSet;
-
 import oracle.dbtools.raptor.utils.Connections;
 
 import oracle.ide.log.LogManager;
+
 
 public class ConnectionPinger implements Runnable {
 
     private boolean execute;
     private int interval;
 
-    public ConnectionPinger(String interval) {
+    public ConnectionPinger(Integer interval) {
         try {
-            this.interval = Integer.parseInt(interval);
+            this.interval = interval;
             if (this.interval < 60) {
                 LogMessage("WARNING", "Timeout is too low (less than 60 seconds).");
                 LogMessage("INFO", "Timeout set to default (600 seconds).");
@@ -77,6 +77,14 @@ public class ConnectionPinger implements Runnable {
                 LogMessage("INFO", "keepalive stopped.");
             } catch (Exception e) {
                 LogMessage("ERROR", e.getMessage());
+                //for other errors we can continue pinging connections
+                //but sleep the thread to avoid infinite loop pinging the connection thousands times a second
+                try {
+                    Thread.sleep(this.interval * 1000);
+                } catch (InterruptedException f) {
+                    this.execute = false;
+                    LogMessage("INFO", "keepalive stopped.");
+                }
             }
         }
     }
