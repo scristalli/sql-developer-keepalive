@@ -17,12 +17,17 @@ public class KeepaliveController implements Controller {
     @Override
     public boolean handleEvent(IdeAction ideAction, Context context) {
         if (!started) {
-            String timeout = null;
-            timeout = JOptionPane.showInputDialog(null, "Please input the desired timeout (in seconds)");
-            started = true;
-            ConnectionPinger conn = new ConnectionPinger(timeout);
-            keeper = new Thread(conn);
-            keeper.start();
+            //String timeout = JOptionPane.showInputDialog(null, "Please input the desired timeout (in seconds)");
+            PollIntervalDialog dlg = new PollIntervalDialog(null);
+            dlg.setVisible(true);
+            
+            Integer pollInterval = dlg.getPollInterval();
+            if(pollInterval != null) {
+                started = true;
+                ConnectionPinger conn = new ConnectionPinger(pollInterval);
+                keeper = new Thread(conn);
+                keeper.start();
+            }
         } else {
             started = false;
             keeper.interrupt();
