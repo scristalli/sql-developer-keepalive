@@ -1,6 +1,7 @@
 package keepalive;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.text.DateFormat;
@@ -11,7 +12,6 @@ import java.util.Date;
 import oracle.dbtools.raptor.utils.Connections;
 
 import oracle.ide.log.LogManager;
-
 
 public class ConnectionPinger implements Runnable {
 
@@ -48,6 +48,7 @@ public class ConnectionPinger implements Runnable {
         this.execute = true;
         LogMessage("INFO", "keepalive started.");
         while (this.execute) {
+            Statement sqlStatement = null;
             try {
                 String[] l = Connections.getInstance().getConnNames();
                 LogMessage("INFO", "keepalive event triggered, scanning " + l.length + " connections...");
@@ -58,8 +59,7 @@ public class ConnectionPinger implements Runnable {
                         displayConnectionName = connectionName.substring(connectionName.indexOf("%23") + 3);
                     }
                     if (Connections.getInstance().isConnectionOpen(connectionName)) {
-                        Statement sqlStatement =
-                            Connections.getInstance().getConnection(connectionName).createStatement();
+                        sqlStatement = Connections.getInstance().getConnection(connectionName).createStatement();
                         String QueryString = "SELECT SYSDATE FROM DUAL";
                         ResultSet rs = sqlStatement.executeQuery(QueryString);
                         while (rs.next()) {
@@ -77,13 +77,21 @@ public class ConnectionPinger implements Runnable {
                 LogMessage("INFO", "keepalive stopped.");
             } catch (Exception e) {
                 LogMessage("ERROR", e.getMessage());
-                //for other errors we can continue pinging connections
-                //but sleep the thread to avoid infinite loop pinging the connection thousands times a second
+                // for other errors we can continue pinging connections
+                // but sleep the thread to avoid infinite loop pinging the connection thousands times a second
                 try {
                     Thread.sleep(this.interval * 1000);
                 } catch (InterruptedException f) {
                     this.execute = false;
                     LogMessage("INFO", "keepalive stopped.");
+                }
+            } finally {
+                if (sqlStatement != null) {
+                    try {
+                        sqlStatement.close();
+                    } catch (SQLException e) {
+                        LogMessage("ERROR", e.getMessage());
+                    }
                 }
             }
         }
