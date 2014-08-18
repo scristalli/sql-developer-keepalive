@@ -1,0 +1,4 @@
+*** VERSION 1.0 TO 1.2
+  - The logging is no longer interfering with user input
+  - Solved other minor issues (please refer to the issue tracker on Github)
+  - Merged new input dialog from Github user eftewuer's fork
