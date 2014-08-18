@@ -39,7 +39,6 @@ public class ConnectionPinger implements Runnable {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         String currentTime = "[" + dateFormat.format(date) + "] ";
-        LogManager.getLogManager().showLog();
         LogManager.getLogManager().getMsgPage().log("KEEPALIVE " + currentTime + level + ": " + msg + "\n");
     }
 

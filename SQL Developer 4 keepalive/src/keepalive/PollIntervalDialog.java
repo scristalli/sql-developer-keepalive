@@ -37,7 +37,7 @@ public class PollIntervalDialog extends JDialog {
 
     public PollIntervalDialog(JFrame parent) {
         super(parent, true);
-        setTitle("KeepAlive");
+        setTitle("keepalive");
         initDialog();
         pack();
     }
