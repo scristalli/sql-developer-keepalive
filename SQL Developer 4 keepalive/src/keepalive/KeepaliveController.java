@@ -1,13 +1,8 @@
 package keepalive;
 
 import oracle.ide.Context;
-import oracle.ide.Ide;
 import oracle.ide.controller.Controller;
 import oracle.ide.controller.IdeAction;
-
-import oracle.javatools.dialogs.MessageDialog;
-
-import javax.swing.JOptionPane;
 
 public class KeepaliveController implements Controller {
 

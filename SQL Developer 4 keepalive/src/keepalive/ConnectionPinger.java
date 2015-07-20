@@ -3,14 +3,11 @@ package keepalive;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 
 import oracle.dbtools.raptor.utils.Connections;
-
 import oracle.ide.log.LogManager;
 
 public class ConnectionPinger implements Runnable {
@@ -47,7 +44,6 @@ public class ConnectionPinger implements Runnable {
         this.execute = true;
         LogMessage("INFO", "keepalive started.");
         while (this.execute) {
-            Statement sqlStatement = null;
             try {
                 String[] l = Connections.getInstance().getConnNames();
                 LogMessage("INFO", "keepalive event triggered, scanning " + l.length + " connections...");
@@ -58,12 +54,23 @@ public class ConnectionPinger implements Runnable {
                         displayConnectionName = connectionName.substring(connectionName.indexOf("%23") + 3);
                     }
                     if (Connections.getInstance().isConnectionOpen(connectionName)) {
-                        sqlStatement = Connections.getInstance().getConnection(connectionName).createStatement();
-                        String QueryString = "SELECT SYSDATE FROM DUAL";
-                        ResultSet rs = sqlStatement.executeQuery(QueryString);
-                        while (rs.next()) {
-                            LogMessage("DEBUG", "The keepalive query returned: " + rs.getString("SYSDATE"));
-                        }
+                	Statement sqlStatement = null;
+                	try {
+                	    sqlStatement = Connections.getInstance().getConnection(connectionName).createStatement();
+                	    String QueryString = "SELECT SYSDATE FROM DUAL";
+                	    ResultSet rs = sqlStatement.executeQuery(QueryString);
+                	    while (rs.next()) {
+                		LogMessage("DEBUG", "The keepalive query returned: " + rs.getString("SYSDATE"));
+                	    }
+                	} finally {
+                	    if (sqlStatement != null) {
+                		try {
+                		    sqlStatement.close();
+                		} catch (SQLException e) {
+                		    LogMessage("ERROR", e.getMessage());
+                		}
+                	    }
+                	}
                         LogMessage("INFO", displayConnectionName + " successfully kept alive!");
                     } else {
                         // NO ACTION (the connection is not open)
@@ -84,15 +91,8 @@ public class ConnectionPinger implements Runnable {
                     this.execute = false;
                     LogMessage("INFO", "keepalive stopped.");
                 }
-            } finally {
-                if (sqlStatement != null) {
-                    try {
-                        sqlStatement.close();
-                    } catch (SQLException e) {
-                        LogMessage("ERROR", e.getMessage());
-                    }
-                }
             }
+            
         }
     }
 }
