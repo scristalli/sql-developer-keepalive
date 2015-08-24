@@ -10,7 +10,7 @@
                 <action id="keepalive.KeepaliveAction">
                     <properties>
                         <property name="Name">&amp;keepalive</property>
-                        <property name="SmallIcon">${OracleIcons.LABEL}</property>
+                        <property name="SmallIcon">${OracleIcons.STATUS_ICONS}</property>
                     </properties>
                 </action>
             </actions>
