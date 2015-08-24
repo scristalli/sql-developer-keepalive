@@ -1,3 +1,8 @@
+*** VERSION 1.2 TO 1.3
+  - Merged fix on open cursors from Github user jdiazest's fork
+  - Extension icon changed
+  - Added script for building the extension ZIP
+
 *** VERSION 1.0 TO 1.2
   - The logging is no longer interfering with user input
   - Solved other minor issues (please refer to the issue tracker on Github)
