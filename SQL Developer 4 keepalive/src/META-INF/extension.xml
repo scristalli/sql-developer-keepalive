@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<extension id="keepalive" version="1.2.0" esdk-version="2.0" rsbundle-class="keepalive.Res"
+<extension id="keepalive" version="1.3.0" esdk-version="2.0" rsbundle-class="keepalive.Res"
            xmlns="http://jcp.org/jsr/198/extension-manifest">
     <name>SQL Developer 4 keepalive</name>
     <owner>Stefano Cristalli</owner>
