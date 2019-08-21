@@ -3,11 +3,14 @@ package keepalive;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import oracle.dbtools.raptor.utils.Connections;
+
 import oracle.ide.log.LogManager;
 
 public class ConnectionPinger implements Runnable {
@@ -54,24 +57,40 @@ public class ConnectionPinger implements Runnable {
                         displayConnectionName = connectionName.substring(connectionName.indexOf("%23") + 3);
                     }
                     if (Connections.getInstance().isConnectionOpen(connectionName)) {
-                	Statement sqlStatement = null;
-                	try {
-                	    sqlStatement = Connections.getInstance().getConnection(connectionName).createStatement();
-                	    String QueryString = "SELECT SYSDATE FROM DUAL";
-                	    ResultSet rs = sqlStatement.executeQuery(QueryString);
-                	    while (rs.next()) {
-                		LogMessage("DEBUG", "The keepalive query returned: " + rs.getString("SYSDATE"));
-                	    }
-                	} finally {
-                	    if (sqlStatement != null) {
-                		try {
-                		    sqlStatement.close();
-                		} catch (SQLException e) {
-                		    LogMessage("ERROR", e.getMessage());
-                		}
-                	    }
-                	}
-                        LogMessage("INFO", displayConnectionName + " successfully kept alive!");
+                        String QueryString = "";
+                        Statement sqlStatement = null;
+                        try {
+                            sqlStatement = Connections.getInstance().getConnection(connectionName).createStatement();
+                            String productName = Connections.getInstance().getConnection(connectionName).getMetaData().getDatabaseProductName();
+                            switch (productName) {
+                                case "Microsoft SQL Server":
+                                    QueryString = "SELECT 1 AS RESULT";
+                                    break;
+                                case "Oracle":
+                                    QueryString = "SELECT SYSDATE AS RESULT FROM DUAL";
+                                    break;
+                                default:
+                                    LogMessage("DEBUG", "Database product name: " + productName);
+                                    QueryString = "SELECT 1 AS RESULT";
+                            }
+
+                            ResultSet rs = sqlStatement.executeQuery(QueryString);
+                            while (rs.next()) {
+                                LogMessage("DEBUG", "The keepalive query returned: " + rs.getString("RESULT"));
+                            }
+                            LogMessage("INFO", displayConnectionName + " successfully kept alive!");
+                        } catch (Exception e) {
+                            LogMessage("ERROR", "The keepalive query was: " + QueryString);
+                            LogMessage("ERROR", e.getMessage());
+                        } finally {
+                            if (sqlStatement != null) {
+                                try {
+                                    sqlStatement.close();
+                                } catch (SQLException e) {
+                                    LogMessage("ERROR", e.getMessage());
+                                }
+                            }
+                        }
                     } else {
                         // NO ACTION (the connection is not open)
                     }
@@ -92,7 +111,7 @@ public class ConnectionPinger implements Runnable {
                     LogMessage("INFO", "keepalive stopped.");
                 }
             }
-            
+
         }
     }
 }
