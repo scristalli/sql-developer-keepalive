@@ -145,7 +145,7 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../../../../Program Files/sqldeveloper/sqldeveloper/extensions/oracle.sqldeveloper.jar" jar-entry=""/>
+                  <url protocol="jar" path="file:/opt/sqldeveloper/sqldeveloper/extensions/oracle.sqldeveloper.jar!/"/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="Oracle.sqldeveloper.jar"/>
@@ -154,7 +154,7 @@
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../Program Files/sqldeveloper/ide/lib/dbapi.jar" jar-entry=""/>
+                  <url protocol="jar" path="file:/opt/sqldeveloper/ide/lib/dbapi.jar!/"/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="Dbapi.jar"/>

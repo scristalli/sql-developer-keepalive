@@ -3,14 +3,11 @@ package keepalive;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 
 import oracle.dbtools.raptor.utils.Connections;
-
 import oracle.ide.log.LogManager;
 
 public class ConnectionPinger implements Runnable {
@@ -111,7 +108,7 @@ public class ConnectionPinger implements Runnable {
                     LogMessage("INFO", "keepalive stopped.");
                 }
             }
-
+            
         }
     }
 }
