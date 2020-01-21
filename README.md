@@ -1,3 +1,3 @@
-# keepalive extension for Oracle SQL Developer 4+ #
+# README REWORK IN PROGRESS #
 
-Head over to the [official site](http://scristalli.github.io) for setup instructions and downloads!
+In the meanwhile, consult the [old site](http://scristalli.github.io) for setup instructions and downloads!
