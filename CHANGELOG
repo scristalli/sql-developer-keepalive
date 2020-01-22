@@ -1,3 +1,6 @@
+*** VERSION 1.3 TO 1.3.1
+  - Added additional database compatibility
+
 *** VERSION 1.2 TO 1.3
   - Merged fix on open cursors from Github user jdiazest's fork
   - Extension icon changed
