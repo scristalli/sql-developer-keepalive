@@ -7,7 +7,10 @@ This extension solves your problem! By sending a simple query to the database ev
 
 ## How do I install it?
 Just download the latest release: ![GitHub release (latest by date)](https://img.shields.io/github/v/release/scristalli/sql-developer-keepalive)  
-It comes as a ZIP, which you can simply install in SQL Developer with the menu _Help > Check for Updates_.
+It comes as a ZIP, which you can simply install in SQL Developer with the menu _Help > Check for Updates_.  
+After restarting SQL developer, click the first icon from the right to start using the keepalive.
+![keepalive icon](https://raw.githubusercontent.com/scristalli/sql-developer-keepalive/master/keepalive-icon.png)  
+Something is not clear? Read two sections ahead ;)
 
 ## Why did you make this?
 The community wanted this. I started from [MinChen Chai's extension for SQL Developer 3](https://sites.google.com/site/keepaliveext/) and ported it to the OSGi framework used from version 4.
