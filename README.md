@@ -25,7 +25,7 @@ Sure!
 ## Is your software free?
 It is, and released under the [MIT license](https://github.com/scristalli/sql-developer-keepalive/blob/master/LICENSE).  
 However, it would be nice to have an incentive to do other little projects. For years I had a small dedicated website with ads, and the total yield was 0 as I couldn't even reach the threshold for getting a payment.  
-So enough with ads, just pay me a beer* if my extension has saved you some time! ![Beerpay](https://img.shields.io/beerpay/scristalli/sql-developer-keepalive)  
+So enough with ads, just pay me a beer* if my extension has saved you some time! [![Beerpay](https://beerpay.io/scristalli/sql-developer-keepalive/badge.svg?style=flat)](https://beerpay.io/scristalli/sql-developer-keepalive)
 Help me proving that a project with ![GitHub All Releases](https://img.shields.io/github/downloads/scristalli/sql-developer-keepalive/total) deserves more than $0!
 
 
