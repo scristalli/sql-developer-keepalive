@@ -6,7 +6,7 @@ Pretty annoying, right?
 This extension solves your problem! By sending a simple query to the database every _n_ seconds, it keeps your connection alive.
 
 ## How do I install it?
-Just download the latest release: ![GitHub release (latest by date)](https://img.shields.io/github/v/release/scristalli/sql-developer-keepalive)  
+Just download the latest release: [![GitHub release (latest by date)](https://img.shields.io/github/v/release/scristalli/sql-developer-keepalive)](https://github.com/scristalli/sql-developer-keepalive/releases)  
 It comes as a ZIP, which you can simply install in SQL Developer with the menu _Help > Check for Updates_.  
 After restarting SQL developer, click the first icon from the right to start using the keepalive.
 ![keepalive icon](https://raw.githubusercontent.com/scristalli/sql-developer-keepalive/master/keepalive-icon.png)  
