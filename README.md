@@ -26,6 +26,4 @@ Sure!
 
 ## Is your software free?
 It is, and released under the [MIT license](https://github.com/scristalli/sql-developer-keepalive/blob/master/LICENSE).  
-However, it would be nice to have an incentive to do other little projects. Just pay me a beer* if my extension has saved you some time! [![Beerpay](https://beerpay.io/scristalli/sql-developer-keepalive/badge.svg?style=flat)](https://beerpay.io/scristalli/sql-developer-keepalive)  
-
-*_use of the funds for purchase and consumption of alcoholic beverages is not guaranteed_
+However, it would be nice to have an incentive to do other little projects. [Buy me a coffee](https://buymeacoffee.com/scristalli) and I'll be grateful!
